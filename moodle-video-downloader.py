@@ -86,19 +86,20 @@ def download_video(video_url, output_path):
         print(Fore.RED + f"Failed to download: {video_url}")
 
 def sanitize_filename(name):
+    # Remove " | WueCampus" at the end of the name, if it exists
+    name = re.sub(r'\s*\|\s*WueCampus$', '', name)
+
     # Define invalid characters for filenames
     invalid_chars = r'[<>:"/\\|?*]'
-    # Replace invalid characters with an underscore
-    sanitized_name = re.sub(invalid_chars, ' ', name)
+    # Replace invalid characters with a space
+    sanitized_name = re.sub(invalid_chars, '', name)
+    
     return sanitized_name
 
-# First open debug instance of chrome with command:
-# "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 --user-data-dir="C:\selenium\chrome-profile"
-# Then use script to download files.
-# make sure `course_url` is set to the page where the subpages contain all the video iframes (e.g. Lecture Recordings page in SSS)
+# Read README.md for how to use
 def main():
     driver = setup_driver()
-    course_url = 'https://wuecampus.uni-wuerzburg.de/moodle/course/section.php?id=734243'
+    course_url = 'https://wuecampus.uni-wuerzburg.de/moodle/course/section.php?id=734243' # change this to the page containing subpages with iframes
     output_dir = 'downloads'
     os.makedirs(output_dir, exist_ok=True)
 
@@ -116,8 +117,8 @@ def main():
 
     # Start processing each subpage
     for i, subpage in enumerate(subpages, start=1):
-        name = driver.title
         video_url = get_video_url_from_iframe(driver, subpage)
+        name = driver.title
         
         if not video_url:
             print(Fore.YELLOW + f"Failed to get URL on page {i}/{len(subpages)} ({name}), skipping.")
