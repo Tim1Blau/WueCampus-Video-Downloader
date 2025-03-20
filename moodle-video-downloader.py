@@ -74,7 +74,7 @@ def download_video(video_url, output_path):
         # Initialize a progress bar with the total file size
         with open(output_path, 'wb') as file:
             # Create a tqdm progress bar
-            with tqdm(total=total_size, unit='B', unit_scale=True, desc="Downloading ") as bar:
+            with tqdm(total=total_size, unit='B', unit_scale=True, desc="Downloading") as bar:
                 for chunk in response.iter_content(chunk_size=8192):
                     # Write each chunk to the file
                     file.write(chunk)
