@@ -19,3 +19,7 @@ Install dependencies with
 ```
 pip install selenium webdriver-manager requests tqdm colorama
 ```
+
+# Future Work
+
+Make chrome extension that downloads iframe content (using the hidden wuecampus url)
