@@ -9,7 +9,6 @@
         "activeTab"
     ],
     "host_permissions": [
-        "*://wuecampus.uni-wuerzburg.de/*",
         "*://video.uni-wuerzburg.de/*"
     ],
     "background": {
