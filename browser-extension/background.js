@@ -7,14 +7,14 @@ chrome.runtime.onInstalled.addListener(() => {
     });
 });
 
-// Context Menu ItemSelected
+// Context Menu Item Selected
 chrome.contextMenus.onClicked.addListener((info, tab) => {
     if (info.menuItemId === "downloadWuecampusVideo") {
         const iframeUrl = info.frameUrl;
         console.log('Iframe URL:', iframeUrl);
         chrome.scripting.executeScript({
             target: { tabId: tab.id, frameIds: [info.frameId] },
-            function: action
+            function: extractVideoUrl
         }, (results) => {
             if (results && results[0].result) {
                 const videoUrl = results[0].result;
@@ -46,7 +46,7 @@ function alertExtern(msg) {
     });
 }
 
-function action() {
+function extractVideoUrl() {
     // Loop through all <script> tags to find the right one with the variables
     for (let script of document.scripts) {
         const scriptContent = script.textContent;
@@ -69,7 +69,7 @@ function action() {
                 // Get the path from Video_Properties
                 const videoUrl = `${videoServer}${videoProperties.Application}/${videoProperties.path}`;
 
-                console.log('Video URL:', videoUrl);
+                console.log('Extracted WueCampus Video URL:', videoUrl);
 
                 return videoUrl; // Exit after the first match, or handle multiple iframes
             }
