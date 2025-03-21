@@ -6,9 +6,7 @@
         "contextMenus",
         "scripting",
         "downloads",
-        "activeTab",
-        "storage",
-        "webRequest"
+        "activeTab"
     ],
     "host_permissions": ["https://*/*"],
     "background": {
