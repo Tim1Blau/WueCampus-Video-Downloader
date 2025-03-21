@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "Video Downloader for WueCampus",
+    "version": "1.0",
+    "permissions": [
+        "contextMenus",
+        "scripting",
+        "downloads",
+        "activeTab",
+        "storage",
+        "webRequest"
+    ],
+    "host_permissions": ["https://*/*"],
+    "background": {
+        "service_worker": "background.js"
+    }
+}
