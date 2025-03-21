@@ -1,3 +1,4 @@
+// Setup Context Menu
 chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.create({
         id: "downloadWuecampusVideo",
@@ -6,7 +7,7 @@ chrome.runtime.onInstalled.addListener(() => {
     });
 });
 
-
+// Context Menu ItemSelected
 chrome.contextMenus.onClicked.addListener((info, tab) => {
     if (info.menuItemId === "downloadWuecampusVideo") {
         const iframeUrl = info.frameUrl;

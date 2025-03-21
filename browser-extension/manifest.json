@@ -8,7 +8,10 @@
         "downloads",
         "activeTab"
     ],
-    "host_permissions": ["https://*/*"],
+    "host_permissions": [
+        "*://wuecampus.uni-wuerzburg.de/*",
+        "*://video.uni-wuerzburg.de/*"
+    ],
     "background": {
         "service_worker": "background.js"
     }
