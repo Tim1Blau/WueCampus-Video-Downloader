@@ -51,7 +51,6 @@ function extractVideoUrl() {
     for (let script of document.scripts) {
         const scriptContent = script.textContent;
 
-
         // Look for the script that contains the Video_Server and Video_Properties
         if (scriptContent.includes('var Video_Properties')) {
             // Extract the values using a regular expression or by parsing the script content
